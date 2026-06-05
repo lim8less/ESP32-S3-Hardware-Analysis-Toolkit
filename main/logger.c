@@ -5,8 +5,13 @@
 
 void logger_print_event(capture_event_t *event)
 {
-    printf("\n[%llu us]\n",
-           (unsigned long long)event->timestamp_us);
+    printf(
+        "\n[%llu us]\n",
+        (unsigned long long)
+        event->timestamp_us
+    );
+
+    printf("TYPE  : %d\n", event->type);
 
     printf("HEX   : ");
 
@@ -15,16 +20,18 @@ void logger_print_event(capture_event_t *event)
         printf("%02X ", event->data[i]);
     }
 
-    printf("\n");
-
-    printf("ASCII : ");
+    printf("\nASCII : ");
 
     for(int i = 0; i < event->length; i++)
     {
         if(isprint(event->data[i]))
+        {
             printf("%c", event->data[i]);
+        }
         else
+        {
             printf(".");
+        }
     }
 
     printf("\n");
