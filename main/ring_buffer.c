@@ -1,6 +1,7 @@
 #include "ring_buffer.h"
 
 #include <string.h>
+#include "stats.h"
 
 static capture_event_t buffer[RING_BUFFER_SIZE];
 
@@ -32,10 +33,14 @@ int ring_buffer_count(void)
     return count;
 }
 
-int ring_buffer_push(capture_event_t *event)
+int ring_buffer_push(
+    capture_event_t *event
+)
 {
     if(ring_buffer_is_full())
     {
+        stats_frame_dropped();
+
         return -1;
     }
 

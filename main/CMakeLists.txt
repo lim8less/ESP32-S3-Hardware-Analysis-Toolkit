@@ -7,5 +7,7 @@ idf_component_register(
         "logger_task.c"
         "timestamp.c"
         "ring_buffer.c"
+        "stats.c"
+        "stats_task.c"
     INCLUDE_DIRS "."
 )
