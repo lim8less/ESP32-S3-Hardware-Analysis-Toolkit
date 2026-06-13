@@ -4,6 +4,7 @@
 
 #include "stats.h"
 #include "stats_task.h"
+#include "trigger.h"
 
 #include "logger_task.h"
 
@@ -15,6 +16,12 @@ void app_main(void)
     ring_buffer_init();
 
     stats_init();
+
+    trigger_init();
+
+    trigger_set_string(
+        "WORLD"
+    );
 
     uart_framer_init();
 

@@ -9,5 +9,6 @@ idf_component_register(
         "ring_buffer.c"
         "stats.c"
         "stats_task.c"
+        "trigger.c"
     INCLUDE_DIRS "."
 )

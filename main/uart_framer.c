@@ -4,6 +4,7 @@
 #include "ring_buffer.h"
 #include "timestamp.h"
 #include "stats.h"
+#include "trigger.h"
 #include <string.h>
 
 #define FRAME_BUFFER_SIZE 256
@@ -54,14 +55,21 @@ static void push_frame(void)
     );
 
     if(
-        ring_buffer_push(
+        trigger_match(
             &event
-        ) == 0
+        )
     )
     {
-        stats_frame_received(
-            frame_length
-        );
+        if(
+            ring_buffer_push(
+                &event
+            ) == 0
+        )
+        {
+            stats_frame_received(
+                frame_length
+            );
+        }
     }
 
     frame_length = 0;
